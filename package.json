@@ -1,0 +1,24 @@
+{
+  "name": "eclass",
+  "version": "0.1.0",
+  "description": "CLI para crear proyectos de la plataforma de MVPs internos de eClass",
+  "type": "module",
+  "bin": {
+    "eclass": "bin/eclass.js"
+  },
+  "files": [
+    "bin",
+    "src"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "typescript": "^7.0.2"
+  }
+}
