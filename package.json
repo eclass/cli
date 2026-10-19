@@ -1,7 +1,7 @@
 {
   "name": "eclass",
   "version": "0.1.0",
-  "description": "CLI para crear proyectos de la plataforma de MVPs internos de eClass",
+  "description": "CLI para crear proyectos internos de eClass",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eclass/cli.git"
@@ -28,5 +28,6 @@
   "devDependencies": {
     "@types/node": "^24.19.2",
     "typescript": "^7.0.2"
-  }
+  },
+  "license": "UNLICENSED"
 }
