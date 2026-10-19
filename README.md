@@ -25,10 +25,10 @@ para publicar.
 
 ## Cómo se instala
 
-Mientras no se publique en un registro de npm, funciona directo desde GitLab:
+Mientras no se publique en un registro de npm, funciona directo desde GitHub:
 
 ```bash
-npx git+ssh://git@gitlab.com/eclass/mvps_internos/eclass_cli.git start mi-app
+npx github:eclass/cli start mi-app
 ```
 
 Para que funcione `npx eclass start …` hay que publicarlo (ver AGENTS.md, pendientes).

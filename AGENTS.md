@@ -50,10 +50,12 @@ propio del CLI.
 - **Publicación** (decisión del usuario): el nombre `eclass` está libre en npm público (verificado
   el 15-10-2026). Opciones: npm público (`npx eclass start …` tal cual, pero el código queda
   público), registro npm de GitLab con scope (`npx -p @eclass/cli eclass start …`, requiere
-  configurar `.npmrc`), o sin publicar (`npx git+ssh://…/eclass_cli.git start …`).
+  configurar `.npmrc`), o sin publicar (`npx github:eclass/cli start …`).
 - Plantillas `php` y `python`: crear sus repos y completar `src/templates.js`.
 
 ## Decisiones del usuario
 
 - 15-10-2026: comando `npx eclass start <nombre-proyecto> [plantilla]`, al estilo del CLI de Ionic;
   plantillas `nodejs`, `php`, `python`. Los repos los crea y publica el usuario en GitLab.
+- 19-10-2026: el repo del CLI se movió a GitHub: `https://github.com/eclass/cli.git`. Las
+  plantillas siguen en GitLab (`src/templates.js`).
