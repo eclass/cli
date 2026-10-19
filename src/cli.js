@@ -9,7 +9,7 @@ const pkg = createRequire(import.meta.url)("../package.json");
 const HELP = `eclass ${pkg.version}: crea proyectos para la plataforma de MVPs de eClass
 
 Uso:
-  npx eclass start <nombre-proyecto> [plantilla]
+  npx @eclass/cli start <nombre-proyecto> [plantilla]
 
 Plantillas:
 ${Object.entries(TEMPLATES)
@@ -22,7 +22,7 @@ Opciones:
   -v, --version      Muestra la versión
 
 Ejemplo:
-  npx eclass start mi-app nodejs`;
+  npx @eclass/cli start mi-app nodejs`;
 
 /**
  * @param {string} name

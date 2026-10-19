@@ -6,7 +6,7 @@ propio del CLI.
 
 ## Qué es
 
-- CLI que crea proyectos nuevos a partir de una plantilla: `npx eclass start <nombre> [plantilla]`.
+- CLI que crea proyectos nuevos a partir de una plantilla: `npx @eclass/cli start <nombre> [plantilla]`.
 - **No** se despliega en la plataforma de MVPs: se ejecuta en la máquina de quien lo usa.
 - Estado (15-10-2026): plantilla `nodejs` funcionando; `php` y `python` anunciadas sin repo.
 
@@ -47,10 +47,9 @@ propio del CLI.
 
 ## Pendientes
 
-- **Publicación** (decisión del usuario): el nombre `eclass` está libre en npm público (verificado
-  el 15-10-2026). Opciones: npm público (`npx eclass start …` tal cual, pero el código queda
-  público), registro npm de GitLab con scope (`npx -p @eclass/cli eclass start …`, requiere
-  configurar `.npmrc`), o sin publicar (`npx github:eclass/cli start …`).
+- **Primera publicación en npm** de `@eclass/cli`: la hace el usuario con una cuenta de la
+  organización `eclass` de npm, con 2FA activada (`npm publish`). Después, verificar
+  `npx @eclass/cli start` desde el registro.
 - Plantillas `php` y `python`: crear sus repos y completar `src/templates.js`.
 
 ## Decisiones del usuario
@@ -59,3 +58,6 @@ propio del CLI.
   plantillas `nodejs`, `php`, `python`. Los repos los crea y publica el usuario en GitLab.
 - 19-10-2026: el repo del CLI se movió a GitHub: `https://github.com/eclass/cli.git`. Las
   plantillas siguen en GitLab (`src/templates.js`).
+- 19-10-2026: se publica en npm público como `@eclass/cli` (organización `eclass` de npm), con
+  `publishConfig.access = public` y licencia `UNLICENSED` (uso exclusivo interno). El binario sigue
+  llamándose `eclass`. Para publicar, npm exige 2FA en la cuenta.

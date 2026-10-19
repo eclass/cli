@@ -1,5 +1,5 @@
 {
-  "name": "eclass",
+  "name": "@eclass/cli",
   "version": "0.1.0",
   "description": "CLI para crear proyectos internos de eClass",
   "repository": {
@@ -29,5 +29,8 @@
     "@types/node": "^24.19.2",
     "typescript": "^7.0.2"
   },
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "publishConfig": {
+    "access": "public"
+  }
 }

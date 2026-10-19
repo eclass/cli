@@ -14,7 +14,7 @@ const NAME_RE = /^[a-z][a-z0-9-]{0,47}[a-z0-9]$/;
  * @returns {string | null}
  */
 export function validateName(name) {
-  if (!name) return "Falta el nombre del proyecto. Ejemplo: npx eclass start mi-app";
+  if (!name) return "Falta el nombre del proyecto. Ejemplo: npx @eclass/cli start mi-app";
   if (name.includes("_")) {
     return `"${name}" tiene guion bajo: el subdominio no lo admite. Usa guiones medios (${name.replaceAll("_", "-")}).`;
   }

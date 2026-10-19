@@ -1,10 +1,10 @@
-# eclass
+# @eclass/cli
 
-CLI para crear proyectos nuevos de la plataforma de MVPs internos de eClass a partir de una
+CLI para crear proyectos nuevos internos de eClass a partir de una
 plantilla: llegar, crear, programar y subir a producción.
 
 ```bash
-npx eclass start <nombre-proyecto> [plantilla]
+npx @eclass/cli start <nombre-proyecto> [plantilla]
 ```
 
 - `nombre-proyecto`: será la carpeta, el nombre del paquete, el servicio de Cloud Run y el
@@ -25,13 +25,13 @@ para publicar.
 
 ## Cómo se instala
 
-Mientras no se publique en un registro de npm, funciona directo desde GitHub:
+No se instala: `npx @eclass/cli start …` lo descarga desde npm (paquete `@eclass/cli`).
+
+Antes de publicarse en npm, o para probar otra rama, funciona directo desde GitHub:
 
 ```bash
 npx github:eclass/cli start mi-app
 ```
-
-Para que funcione `npx eclass start …` hay que publicarlo (ver AGENTS.md, pendientes).
 
 ## Agregar una plantilla
 

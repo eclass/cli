@@ -95,7 +95,7 @@ test("si la fuente falla no queda una carpeta a medias", () => {
 });
 
 test("ayuda y comando desconocido", () => {
-  assert.match(runCli([]).out, /npx eclass start/);
+  assert.match(runCli([]).out, /npx @eclass\/cli start/);
   assert.equal(runCli(["crear"]).code, 1);
 });
 
