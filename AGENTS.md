@@ -8,7 +8,8 @@ propio del CLI.
 
 - CLI que crea proyectos nuevos a partir de una plantilla: `npx @eclass/cli start <nombre> [plantilla]`.
 - **No** se despliega en la plataforma de MVPs: se ejecuta en la máquina de quien lo usa.
-- Estado (15-10-2026): plantilla `nodejs` funcionando; `php` y `python` anunciadas sin repo.
+- Estado (19-10-2026): publicado en npm como `@eclass/cli@0.1.0`; plantilla `nodejs` funcionando;
+  `php` y `python` anunciadas sin repo.
 
 ## Stack y reglas propias
 
@@ -39,6 +40,12 @@ propio del CLI.
   plantilla usa en su `package.json`. Un test lo verifica si `template_nodejs` está clonado al lado.
 - Si una plantilla cambia su placeholder, se cambian los dos repos en el mismo día.
 
+## Publicar una versión
+
+- Subir `version` en `package.json` (`npm version patch|minor`), luego `npm publish` con una cuenta
+  de la organización `eclass` de npm (exige 2FA o token granular con bypass 2FA). El registro tarda
+  unos minutos en mostrar la versión nueva.
+
 ## Verificación antes de publicar una versión
 
 - `npm run typecheck` y `npm test`.
@@ -47,9 +54,6 @@ propio del CLI.
 
 ## Pendientes
 
-- **Primera publicación en npm** de `@eclass/cli`: la hace el usuario con una cuenta de la
-  organización `eclass` de npm, con 2FA activada (`npm publish`). Después, verificar
-  `npx @eclass/cli start` desde el registro.
 - Plantillas `php` y `python`: crear sus repos y completar `src/templates.js`.
 
 ## Decisiones del usuario
