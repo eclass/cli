@@ -66,8 +66,10 @@ propio del CLI.
   `eclass/mvps_internos`). `template_nodejs` se movió a `eclass/apps/template_nodejs`, y los pasos
   para publicar piden la variable `SUBDOMAIN` (antes `MVP_SUBDOMAIN`), que es la que lee el pipeline
   compartido (`eclass/apps/templates_aplicaciones`).
-- 20-10-2026: `SUBDOMAIN` lleva solo el subdominio (`mi-app`), sin `.eclass.com`; el dominio por
-  defecto es `.eclass.com`. Cambiado en los pasos para publicar del CLI y en `template_nodejs`.
+- 20-10-2026: `SUBDOMAIN` lleva el dominio completo (`mi-app.eclass.com`), no solo el subdominio,
+  porque eClass tiene otros dominios habilitados y una app puede publicarse en cualquiera de ellos.
+  Los pasos del CLI sugieren `<nombre>.eclass.com` como valor por defecto. (Se probó pedir solo el
+  subdominio en 0.1.3 y se revirtió en 0.1.4.)
 - 19-10-2026: se publica en npm público como `@eclass/cli` (organización `eclass` de npm), con
   `publishConfig.access = public` y licencia `UNLICENSED` (uso exclusivo interno). El binario sigue
   llamándose `eclass`. Para publicar, npm exige 2FA en la cuenta.
