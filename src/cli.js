@@ -42,7 +42,7 @@ Para publicar (una vez):
   1. Crea el repo en GitLab: eclass/apps/${repo}
   2. Variables del proyecto (Settings → CI/CD → Variables):
        CLOUD_RUN_SERVICE = ${name}
-       SUBDOMAIN         = ${name}.eclass.com   (verifica en Cloudflare que esté libre)
+       SUBDOMAIN         = ${name}   (verifica en Cloudflare que esté libre)
   3. git add -A && git commit -m "feat: proyecto inicial"
      git remote add origin git@gitlab.com:eclass/apps/${repo}.git
      git push -u origin main         # push a main = deploy a https://${name}.eclass.com
