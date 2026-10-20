@@ -7,7 +7,7 @@ propio del CLI.
 ## Qué es
 
 - CLI que crea proyectos nuevos a partir de una plantilla: `npx @eclass/cli start <nombre> [plantilla]`.
-- **No** se despliega en la plataforma de MVPs: se ejecuta en la máquina de quien lo usa.
+- **No** se despliega en la plataforma de aplicaciones: se ejecuta en la máquina de quien lo usa.
 - Estado (19-10-2026): publicado en npm como `@eclass/cli@0.1.0`; plantilla `nodejs` funcionando;
   `php` y `python` anunciadas sin repo.
 
@@ -62,6 +62,10 @@ propio del CLI.
   plantillas `nodejs`, `php`, `python`. Los repos los crea y publica el usuario en GitLab.
 - 19-10-2026: el repo del CLI se movió a GitHub: `https://github.com/eclass/cli.git`. Las
   plantillas siguen en GitLab (`src/templates.js`).
+- 20-10-2026: las plantillas y los proyectos viven en el grupo `eclass/apps` de GitLab (antes
+  `eclass/mvps_internos`). `template_nodejs` se movió a `eclass/apps/template_nodejs`, y los pasos
+  para publicar piden la variable `SUBDOMAIN` (antes `MVP_SUBDOMAIN`), que es la que lee el pipeline
+  compartido (`eclass/apps/templates_aplicaciones`).
 - 19-10-2026: se publica en npm público como `@eclass/cli` (organización `eclass` de npm), con
   `publishConfig.access = public` y licencia `UNLICENSED` (uso exclusivo interno). El binario sigue
   llamándose `eclass`. Para publicar, npm exige 2FA en la cuenta.

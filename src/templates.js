@@ -12,7 +12,7 @@
  */
 export const TEMPLATES = {
   nodejs: {
-    repo: "git@gitlab.com:eclass/mvps_internos/template_nodejs.git",
+    repo: "git@gitlab.com:eclass/apps/template_nodejs.git",
     placeholder: "template-nodejs",
     description: "Node 24 + Express 5 + TypeScript sin build",
   },

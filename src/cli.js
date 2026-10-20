@@ -6,7 +6,7 @@ import { validateName, createProject } from "./start.js";
 
 const pkg = createRequire(import.meta.url)("../package.json");
 
-const HELP = `eclass ${pkg.version}: crea proyectos para la plataforma de MVPs de eClass
+const HELP = `eclass ${pkg.version}: crea proyectos para la plataforma de aplicaciones de eClass
 
 Uso:
   npx @eclass/cli start <nombre-proyecto> [plantilla]
@@ -39,12 +39,12 @@ Para programar:
   npm run dev                      # http://localhost:8080
 
 Para publicar (una vez):
-  1. Crea el repo en GitLab: eclass/mvps_internos/${repo}
+  1. Crea el repo en GitLab: eclass/apps/${repo}
   2. Variables del proyecto (Settings → CI/CD → Variables):
        CLOUD_RUN_SERVICE = ${name}
-       MVP_SUBDOMAIN     = ${name}.eclass.com   (verifica en Cloudflare que esté libre)
+       SUBDOMAIN         = ${name}.eclass.com   (verifica en Cloudflare que esté libre)
   3. git add -A && git commit -m "feat: proyecto inicial"
-     git remote add origin git@gitlab.com:eclass/mvps_internos/${repo}.git
+     git remote add origin git@gitlab.com:eclass/apps/${repo}.git
      git push -u origin main         # push a main = deploy a https://${name}.eclass.com
 
 Reglas de trabajo y paso a producción: AGENTS.md`;

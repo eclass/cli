@@ -68,7 +68,7 @@ test("start crea el proyecto: reemplaza el nombre, resetea la versión y omite n
   assert.equal(existsSync(path.join(dest, ".git")), true);
 
   assert.match(r.out, /CLOUD_RUN_SERVICE = mi-app/);
-  assert.match(r.out, /eclass\/mvps_internos\/mi_app/);
+  assert.match(r.out, /eclass\/apps\/mi_app/);
 });
 
 test("start sin plantilla usa nodejs", () => {
