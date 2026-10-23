@@ -4,7 +4,7 @@
  * Plantillas disponibles para `eclass start`.
  * - repo: de dónde se clona (necesita acceso SSH a GitLab de eClass).
  * - placeholder: texto que la plantilla usa como nombre del proyecto y que se reemplaza
- *   por el nombre nuevo (package.json, package-lock.json, README, etc.).
+ *   por el nombre nuevo (package.json, package-lock.json, app/__init__.py, README, etc.).
  * Una plantilla con repo null todavía no existe: se anuncia pero no se puede usar.
  *
  * @typedef {{ repo: string | null, placeholder: string, description: string }} Template
@@ -22,9 +22,9 @@ export const TEMPLATES = {
     description: "PHP 8.4 (próximamente)",
   },
   python: {
-    repo: null,
+    repo: "git@gitlab.com:eclass/apps/template_python.git",
     placeholder: "template-python",
-    description: "Python 3.12 (próximamente)",
+    description: "Python 3.12 + FastAPI",
   },
 };
 

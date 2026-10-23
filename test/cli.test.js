@@ -71,6 +71,29 @@ test("start crea el proyecto: reemplaza el nombre, resetea la versión y omite n
   assert.match(r.out, /eclass\/apps\/mi_app/);
 });
 
+test("start python: reemplaza el nombre, deja VERSION en 0.1.0, omite .venv y muestra los pasos de Python", () => {
+  const py = path.join(work, "fixture-py");
+  mkdirSync(path.join(py, "app"), { recursive: true });
+  mkdirSync(path.join(py, ".venv", "lib"), { recursive: true });
+  mkdirSync(path.join(py, "app", "__pycache__"));
+  writeFileSync(path.join(py, "app", "__init__.py"), 'APP_NAME = "template-python"\n');
+  writeFileSync(path.join(py, "VERSION"), "0.4.2\n");
+  writeFileSync(path.join(py, "README.md"), "# template-python\n");
+  writeFileSync(path.join(py, ".venv", "lib", "x.py"), "template-python");
+
+  const r = runCli(["start", "mi-api", "python", "--from", py]);
+  assert.equal(r.code, 0, r.err);
+  const dest = path.join(work, "mi-api");
+  assert.equal(readFileSync(path.join(dest, "app", "__init__.py"), "utf8"), 'APP_NAME = "mi-api"\n');
+  assert.equal(readFileSync(path.join(dest, "VERSION"), "utf8"), "0.1.0\n");
+  assert.equal(readFileSync(path.join(dest, "README.md"), "utf8"), "# mi-api\n");
+  assert.equal(existsSync(path.join(dest, ".venv")), false);
+  assert.equal(existsSync(path.join(dest, "app", "__pycache__")), false);
+  assert.equal(existsSync(path.join(dest, "package.json")), false); // no inventa archivos de Node
+  assert.match(r.out, /make dev/);
+  assert.doesNotMatch(r.out, /npm/);
+});
+
 test("start sin plantilla usa nodejs", () => {
   assert.equal(runCli(["start", "otra-app", "--from", fixture]).code, 0);
 });
@@ -105,4 +128,11 @@ test("el placeholder coincide con el nombre en template_nodejs", (t) => {
   const sibling = path.resolve(import.meta.dirname, "..", "..", "template_nodejs", "package.json");
   if (!existsSync(sibling)) return t.skip("template_nodejs no está clonado al lado");
   assert.equal(JSON.parse(readFileSync(sibling, "utf8")).name, TEMPLATES.nodejs.placeholder);
+});
+
+// Lo mismo con template_python: el nombre vive en app/__init__.py (APP_NAME).
+test("el placeholder coincide con el nombre en template_python", (t) => {
+  const sibling = path.resolve(import.meta.dirname, "..", "..", "template_python", "app", "__init__.py");
+  if (!existsSync(sibling)) return t.skip("template_python no está clonado al lado");
+  assert.match(readFileSync(sibling, "utf8"), new RegExp(`APP_NAME = "${TEMPLATES.python.placeholder}"`));
 });

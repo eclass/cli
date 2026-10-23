@@ -8,8 +8,9 @@ propio del CLI.
 
 - CLI que crea proyectos nuevos a partir de una plantilla: `npx @eclass/cli start <nombre> [plantilla]`.
 - **No** se despliega en la plataforma de aplicaciones: se ejecuta en la máquina de quien lo usa.
-- Estado (19-10-2026): publicado en npm como `@eclass/cli@0.1.0`; plantilla `nodejs` funcionando;
-  `php` y `python` anunciadas sin repo.
+- Estado (23-10-2026): publicado en npm como `@eclass/cli@0.1.4`; plantilla `nodejs` funcionando.
+  Plantilla `python` agregada en el código (repo `eclass/apps/template_python`), **pendiente de
+  publicar** una versión nueva del CLI y de subir ese repo a GitLab. `php` anunciada sin repo.
 
 ## Stack y reglas propias
 
@@ -29,15 +30,17 @@ propio del CLI.
    Cloud Run con máximo 49 caracteres, subdominio sin guion bajo).
 2. Trae la plantilla: `git clone --depth 1` del repo de `src/templates.js`, o copia la carpeta de
    `--from`. Sin `.git` ni `node_modules`.
-3. Reemplaza el placeholder (`template-nodejs`) y `<servicio>` por el nombre en todos los archivos
-   de texto (omite binarios: archivos con un byte NUL).
-4. Deja `version` en `0.1.0` en `package.json` y `package-lock.json`.
-5. `git init -b main` y muestra los pasos para publicar.
+3. Reemplaza el placeholder (`template-nodejs`, `template-python`) y `<servicio>` por el nombre en
+   todos los archivos de texto (omite binarios: archivos con un byte NUL).
+4. Deja la versión en `0.1.0`: `package.json` y `package-lock.json` (Node) o el archivo `VERSION`
+   (Python). Al copiar con `--from` omite `.git`, `node_modules`, `.venv` y las cachés de Python.
+5. `git init -b main` y muestra los pasos para programar (según la plantilla) y publicar.
 
 ## Contrato con las plantillas
 
 - El placeholder de cada plantilla está en `src/templates.js` y debe coincidir con el nombre que la
-  plantilla usa en su `package.json`. Un test lo verifica si `template_nodejs` está clonado al lado.
+  plantilla usa: `name` de `package.json` en Node, `APP_NAME` de `app/__init__.py` en Python. Un
+  test lo verifica si `template_nodejs` o `template_python` están clonados al lado.
 - Si una plantilla cambia su placeholder, se cambian los dos repos en el mismo día.
 
 ## Publicar una versión
@@ -50,11 +53,16 @@ propio del CLI.
 
 - `npm run typecheck` y `npm test`.
 - Prueba real: `npx --yes <ruta-a-este-repo> start demo-x --from ../template_nodejs` en una carpeta
-  temporal; en el proyecto generado, `npm ci`, `npm run typecheck`, `npm test` y `/info`.
+  temporal; en el proyecto generado, `npm ci`, `npm run typecheck`, `npm test` y `/info`. Lo mismo
+  con `start demo-py python --from ../template_python`: `make install`, `make typecheck`,
+  `make test` y `/info` (hecho el 23-10-2026 con el código de esta versión: todo en verde).
 
 ## Pendientes
 
-- Plantillas `php` y `python`: crear sus repos y completar `src/templates.js`.
+- Plantilla `php`: crear su repo y completar `src/templates.js`.
+- Publicar la versión con la plantilla `python` (`npm version minor` → `0.2.0` y `npm publish`)
+  después de que el usuario suba `template_python` a `eclass/apps/template_python` en GitLab. Si
+  el repo queda en otra ruta, corregir `repo` en `src/templates.js`.
 
 ## Decisiones del usuario
 
@@ -73,3 +81,6 @@ propio del CLI.
 - 19-10-2026: se publica en npm público como `@eclass/cli` (organización `eclass` de npm), con
   `publishConfig.access = public` y licencia `UNLICENSED` (uso exclusivo interno). El binario sigue
   llamándose `eclass`. Para publicar, npm exige 2FA en la cuenta.
+- 23-10-2026: se agrega la plantilla `python` (`template_python`, Python 3.12 + FastAPI), paralela
+  a `template_nodejs`. Uso: `npx @eclass/cli start <nombre> python`; `nodejs` sigue siendo la
+  plantilla por defecto.

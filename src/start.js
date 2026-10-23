@@ -25,8 +25,8 @@ export function validateName(name) {
   return null;
 }
 
-// Carpetas que nunca se copian ni se recorren.
-const SKIP_DIRS = new Set([".git", "node_modules"]);
+// Carpetas que nunca se copian ni se recorren (dependencias, entornos y cachés locales).
+const SKIP_DIRS = new Set([".git", "node_modules", ".venv", "venv", "__pycache__", ".mypy_cache", ".ruff_cache"]);
 
 /**
  * Reemplaza el placeholder y `<servicio>` en todos los archivos de texto del proyecto.
@@ -63,10 +63,13 @@ export function replaceInTree(dir, placeholder, name) {
 }
 
 /**
- * Un proyecto nuevo parte en 0.1.0, no en la versión de la plantilla.
+ * Un proyecto nuevo parte en 0.1.0, no en la versión de la plantilla. Node la guarda en
+ * package.json y package-lock.json; Python, en el archivo VERSION.
  * @param {string} dir
  */
 export function resetVersion(dir) {
+  const versionFile = path.join(dir, "VERSION");
+  if (existsSync(versionFile)) writeFileSync(versionFile, "0.1.0\n");
   for (const file of ["package.json", "package-lock.json"]) {
     const full = path.join(dir, file);
     if (!existsSync(full)) continue;

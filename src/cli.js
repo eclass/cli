@@ -21,22 +21,32 @@ Opciones:
   -h, --help         Muestra esta ayuda
   -v, --version      Muestra la versión
 
-Ejemplo:
-  npx @eclass/cli start mi-app nodejs`;
+Ejemplos:
+  npx @eclass/cli start mi-app            # Node.js
+  npx @eclass/cli start mi-app python`;
+
+// Cómo empezar a programar, según la plantilla.
+/** @type {Record<string, string>} */
+const DEV_STEPS = {
+  nodejs: `  nvm use && npm install
+  npm run dev                      # http://localhost:8080`,
+  python: `  python3.12 -m venv .venv && make install
+  make dev                         # http://localhost:8080`,
+};
 
 /**
  * @param {string} name
  * @param {string} dest
+ * @param {string} templateKey
  */
-function nextSteps(name, dest) {
+function nextSteps(name, dest, templateKey) {
   const repo = name.replaceAll("-", "_");
   return `
 Proyecto creado en ${dest}
 
 Para programar:
   cd ${name}
-  nvm use && npm install
-  npm run dev                      # http://localhost:8080
+${DEV_STEPS[templateKey] ?? DEV_STEPS[DEFAULT_TEMPLATE]}
 
 Para publicar (una vez):
   1. Crea el repo en GitLab: eclass/apps/${repo}
@@ -112,7 +122,7 @@ export function main(argv, io = {}) {
   try {
     log(`Creando ${name} con la plantilla ${templateKey}…`);
     const dest = createProject({ name: /** @type {string} */ (name), source, placeholder: template.placeholder, cwd });
-    log(nextSteps(/** @type {string} */ (name), dest));
+    log(nextSteps(/** @type {string} */ (name), dest, templateKey));
     return 0;
   } catch (err) {
     error(`No se pudo crear el proyecto: ${err instanceof Error ? err.message : err}`);
